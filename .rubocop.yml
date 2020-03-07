@@ -1,0 +1,59 @@
+AllCops:
+  TargetRubyVersion: 2.4
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/**/*'
+    - 'spec/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - 'log/**/*'
+    - 'node_modules/**/*'
+    - !ruby/regexp /old_and_unused\.rb$/
+
+Documentation:
+  Enabled: false
+
+Layout/MultilineOperationIndentation:
+  Enabled: false
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+
+Layout/HashAlignment:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 26
+
+Metrics/LineLength:
+  Max: 99
+
+Metrics/MethodLength:
+  CountComments: false
+  Max: 25
+
+Naming/PredicateName:
+  Enabled: false
+
+Style/AndOr:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/EachWithObject:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/RedundantReturn:
+  Enabled: false
+
+Style/Semicolon:
+  AllowAsExpressionSeparator: true
