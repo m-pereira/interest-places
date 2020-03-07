@@ -1,7 +1,27 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+ActiveRecord::Base.transaction do
+  puts 'Deleting all Places...'
+  InterestPlace.destroy_all
+
+  puts 'Seeding Interest Places'
+  InterestPlace.create(
+    name: 'Praça',
+    x: 12,
+    y: 17
+  )
+
+  InterestPlace.create(
+    name: 'Restalrante da Zulmira',
+    x: 12,
+    y: 17,
+    opened: '10:00',
+    closed: '16:00'
+  )
+
+  InterestPlace.create(
+    name: 'Barbearia do Joaquim',
+    x: 12,
+    y: 17,
+    opened: '08:00',
+    closed: '18:00'
+  )
+end
