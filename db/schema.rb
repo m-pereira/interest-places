@@ -16,11 +16,11 @@ ActiveRecord::Schema.define(version: 2020_03_07_164304) do
   enable_extension "plpgsql"
 
   create_table "interest_places", force: :cascade do |t|
-    t.string "name"
-    t.integer "x"
-    t.integer "y"
-    t.string "opened"
-    t.string "closed"
+    t.string "name", null: false
+    t.integer "x", null: false
+    t.integer "y", null: false
+    t.string "opened", default: "always"
+    t.string "closed", default: "never"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

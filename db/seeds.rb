@@ -11,15 +11,15 @@ ActiveRecord::Base.transaction do
 
   InterestPlace.create(
     name: 'Restalrante da Zulmira',
-    x: 12,
-    y: 17,
+    x: 15,
+    y: 23,
     opened: '10:00',
     closed: '16:00'
   )
 
   InterestPlace.create(
     name: 'Barbearia do Joaquim',
-    x: 12,
+    x: 29,
     y: 17,
     opened: '08:00',
     closed: '18:00'
