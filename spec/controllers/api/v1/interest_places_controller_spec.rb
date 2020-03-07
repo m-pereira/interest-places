@@ -110,4 +110,48 @@ RSpec.describe Api::V1::InterestPlacesController, type: :controller do
       expect{ subject }.to change(InterestPlace, :count).by(-1)
     end
   end
+
+  describe 'GET search' do
+    context 'when valid params' do
+      subject { get :search, params: { search: { x: 12, y: 10, mts: 10, hr: '12:00' } } }
+
+      it 'does not render the params error message' do
+        subject
+
+        expect(response.body).not_to match(
+          /Search params is incorrect, it must be like: { x: 1, y: 2, mts: 10, hr: '12:00' }/
+        )
+      end
+
+      it 'calls QueryGenerator' do
+        allow(QueryGenerator).to receive(:call)
+
+        expect(QueryGenerator).to receive(:call)
+
+        subject
+      end
+    end
+
+    context 'when invalid params' do
+      subject { get :search, params: { search: {
+        y: 10,
+        mts: 10,
+        hr: '12:00' 
+      } } }
+
+      it 'returns http unprocessable_entity' do
+        subject
+
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it 'returns the message' do
+        subject
+
+        expect(response.body).to match(
+          /Search params is incorrect, it must be like: { x: 1, y: 2, mts: 10, hr: '12:00' }/
+        )
+      end
+    end
+  end
 end

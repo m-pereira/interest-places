@@ -28,7 +28,7 @@ Metrics/AbcSize:
   Max: 26
 
 Metrics/LineLength:
-  Max: 99
+  Max: 150
 
 Metrics/MethodLength:
   CountComments: false

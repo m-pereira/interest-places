@@ -1,5 +1,13 @@
 class Api::V1::InterestPlacesController < ApplicationController
-  before_action :set_interest_place, only: [:update, :destroy]
+  before_action :set_interest_place, only: %i[update destroy]
+
+  def search
+    return params_search_message if params_correct?
+
+    @query = QueryGenerator.call(params[:search])
+
+    render json: @query
+  end
 
   def index
     @interest_places = InterestPlace.order(:name)
@@ -36,7 +44,24 @@ class Api::V1::InterestPlacesController < ApplicationController
     params.require(:interest_place).permit(:name, :x, :y, :opened, :closed)
   end
 
+  def search_params
+    params.require(:search).permit(:x, :y, :mts, :hr)
+  end
+
   def set_interest_place
     @interest_place = InterestPlace.find(params[:id])
+  end
+
+  def params_correct?
+    needed_keys = %i[x y mts hr]
+
+    needed_keys.map do |key|
+      search_params.include?(key)
+    end.include?(false)
+  end
+
+  def params_search_message
+    render json: "Search params is incorrect, it must be like: { x: 1, y: 2, mts: 10, hr: '12:00' }",
+      status: :unprocessable_entity
   end
 end
