@@ -4,7 +4,7 @@ class Api::V1::InterestPlacesController < ApplicationController
   def search
     return params_search_message if params_correct?
 
-    @query = QueryGenerator.call(params[:search])
+    @query = PlacePicker.call(params[:search])
 
     render json: @query
   end

@@ -123,10 +123,12 @@ RSpec.describe Api::V1::InterestPlacesController, type: :controller do
         )
       end
 
-      it 'calls QueryGenerator' do
-        allow(QueryGenerator).to receive(:call)
+      it 'calls PlacePicker' do
+        allow(PlacePicker).to receive(:call)
 
-        expect(QueryGenerator).to receive(:call)
+        expect(PlacePicker).to receive(:call).with(
+          ActionController::Parameters.new({ x: '12', y: '10', mts: '10', hr: '12:00' })
+        )
 
         subject
       end
