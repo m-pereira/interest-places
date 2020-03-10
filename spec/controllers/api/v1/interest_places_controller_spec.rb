@@ -95,6 +95,18 @@ RSpec.describe Api::V1::InterestPlacesController, type: :controller do
     end
   end
 
+  describe 'GET #show' do
+    let(:interest_place) { create(:interest_place) }
+
+    subject { get :show, params: { id: interest_place.id } }
+
+    it 'has have_http_status ok' do
+      subject
+
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
   describe "DELETE #destroy" do
     let!(:interest_place) { create(:interest_place) }
 

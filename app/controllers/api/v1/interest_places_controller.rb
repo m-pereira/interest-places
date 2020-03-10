@@ -1,5 +1,5 @@
 class Api::V1::InterestPlacesController < ApplicationController
-  before_action :set_interest_place, only: %i[update destroy]
+  before_action :set_interest_place, only: %i[show update destroy]
 
   def search
     return params_search_message if params_correct?
@@ -30,6 +30,10 @@ class Api::V1::InterestPlacesController < ApplicationController
     else
       render json: @interest_place.errors, status: :unprocessable_entity
     end
+  end
+
+  def show
+    render json: @interest_place
   end
 
   def destroy
