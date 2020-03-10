@@ -2,47 +2,84 @@
 
 ### Setup
 
-* TODO: criar o setup
+#### Prerequisites
 
-* TODO: apagar o backlog
+  Considering a machine with ruby ​​installed. 
 
-### Backlog
+  If not, I suggest using [asdf](https://asdf-vm.com/#/core-manage-asdf-vm), 
+  with [ruby-plugin](https://github.com/asdf-vm/asdf-ruby), 
+  as ruby version manager. Or one that you prefer.
 
-1- Criar uma api em node
+---
 
-2- Fazer o setup, instalar as dependencias
+1 - Clone the repo:
 
-3- Criar um model chamado InteresPlace com os compos:
+    $ git clone git@github.com:m-pereira/interest-places.git
 
-  * name:string
-  * x:integer
-  * y:integer
-  * opened:string
-  * closed:string
+  Browse app folder: 
 
-obs: alguns lugares não terão horario de abrir ou de fechar como por exemplo uma Praça.
+    $ cd interest-places
 
-4- Criar o controller(CRUD, RESTful)
+2 - Install dependencies:
 
-5- Criar um controller que fará as queries por exemplo:
+    $ bundle install
 
-`{ x: 20, y: 12, mts: 10, hr: "19:00" }`
+3 - Set your postgres database configs:
 
-e a resposta deve ser uma collection com os lugares encontrados.
+    $ cp config/database.example.yml config/database.yml
 
-ex:
+  Open `config/database.yml` and edit it acording your database settings.
 
-```json
-  [
+  If you don't have postgres installed, please click [here](https://www.postgresql.org/download/) and install it.
+
+4 - Run rails server:
+
+    $ rails s
+
+5 - Go to [postman](https://www.postman.com/downloads/):
+
+  * GET index: localhost:3000/api/v1/interest_places
+  * POST create: localhost:3000/api/v1/interest_places
+
+  with body example:
+  ```json
     {
-      "place_name": "Restalrante da Joaoa",
-      "status": "open"
-    },
-    {
-      "palce_name": "Barbearia do José",
-      "status": "closed"
+      "interest_place": {
+        "name": "Posto de gasolina",
+        "x": 20,
+        "y": 12,
+        "opened": "07:00",
+        "closed": "20:00"
+      }
     }
-  ]
-```
+  ```
 
-6-  Criar um README.md explicando o setup.
+  * GET show: localhost:3000/api/v1/interest_places/<interest_place_id>
+  * PUT update: localhost:3000/api/v1/interest_places/<interest_place_id> 
+
+  with body example:
+
+  ```json
+    {
+      "interest_place": {
+        "name": "Some place"
+      }
+    }
+  ```
+
+  * DELETE destroy: localhost:3000/api/v1/interest_places/<interest_place_id>
+
+  * GET search_interest_places: localhost:3000/api/v1/search_places
+
+  with body example:
+
+  ```json
+    {
+      "search": {
+        "x": 10,
+        "y": 10,
+        "mts": 20,
+        "hr": "06:00"
+      }
+    }
+  ```
