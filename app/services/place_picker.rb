@@ -30,11 +30,11 @@ class PlacePicker
     'closed'
   end
 
-  def coord_min(c)
-    c - mts
+  def coord_min(coord)
+    coord - mts
   end
 
-  def coord_max(c)
-    c + mts
+  def coord_max(coord)
+    coord + mts
   end
 end

@@ -32,11 +32,15 @@
 
   If you don't have postgres installed, please click [here](https://www.postgresql.org/download/) and install it.
 
-4 - Run rails server:
+4 - Run database setup:
+
+    $ rails db:setup
+    
+5 - Run rails server:
 
     $ rails s
 
-5 - Go to [postman](https://www.postman.com/downloads/):
+6 - Go to [postman](https://www.postman.com/downloads/):
 
   * GET index: localhost:3000/api/v1/interest_places
   * POST create: localhost:3000/api/v1/interest_places
